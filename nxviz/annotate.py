@@ -254,7 +254,7 @@ def colormapping(data: pd.Series, legend_kwargs: Dict = {}, ax=None, colorbar_ma
             norm = Normalize(vmin=data.min(), vmax=data.max())
         else:
             upper_lim = data.max() if not colorbar_max else colorbar_max
-            norm = Normalize(vmin=upper_lim, vmax=upper_lim)
+            norm = Normalize(vmin=-upper_lim, vmax=upper_lim)
         scalarmap = ScalarMappable(
             cmap=cmap,
             norm=norm,
