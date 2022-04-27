@@ -249,7 +249,7 @@ def colormapping(data: pd.Series, legend_kwargs: Dict = {}, ax=None):
     cmap, data_family = encodings.data_cmap(data)
     if ax is None:
         ax = plt.gca()
-    if data_family == "continuous":
+    if data_family in ["continuous", "divergent"]:
         norm = Normalize(vmin=data.min(), vmax=data.max())
         scalarmap = ScalarMappable(
             cmap=cmap,
