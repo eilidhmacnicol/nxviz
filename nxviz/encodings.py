@@ -100,6 +100,8 @@ def color_func(data: pd.Series) -> Callable:
     func = discrete_color_func
     if data_family in ["continuous", "ordinal"]:
         func = continuous_color_func
+    if data_family == "divergent":
+        func = divergent_color_func
     return partial(func, cmap=cmap, data=data)
 
 
