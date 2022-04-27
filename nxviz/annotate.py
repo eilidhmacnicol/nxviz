@@ -240,7 +240,7 @@ def matrix_block(
         ax.add_patch(patch)
 
 
-def colormapping(data: pd.Series, legend_kwargs: Dict = {}, ax=None):
+def colormapping(data: pd.Series, legend_kwargs: Dict = {}, ax=None, colorbar_max=None):
     """Annotate node color mapping.
 
     If the color attribute is continuous, a colorbar will be added to the matplotlib figure.
@@ -250,7 +250,11 @@ def colormapping(data: pd.Series, legend_kwargs: Dict = {}, ax=None):
     if ax is None:
         ax = plt.gca()
     if data_family in ["continuous", "divergent"]:
-        norm = Normalize(vmin=data.min(), vmax=data.max())
+        if data_family == "continuous"
+            norm = Normalize(vmin=data.min(), vmax=data.max())
+        else:
+            upper_lim = data.max() if not colorbar_max else colorbar_max
+            norm = Normalize(vmin=upper_lim, vmax=upper_lim)
         scalarmap = ScalarMappable(
             cmap=cmap,
             norm=norm,
