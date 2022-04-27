@@ -256,7 +256,10 @@ def colormapping(data: pd.Series, legend_kwargs: Dict = {}, ax=None):
             norm=norm,
         )
         fig = plt.gcf()
-        fig.colorbar(scalarmap)
+        kwargs = {}
+        kwargs.update(legend_kwargs)
+        
+        fig.colorbar(scalarmap, **kwargs)
     else:
         labels = data.drop_duplicates().sort_values()
         cfunc = encodings.color_func(data)
